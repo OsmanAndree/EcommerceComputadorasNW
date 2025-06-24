@@ -1,0 +1,123 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="EcommerceComputadorasNW.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechStore</title>
+
+    <link href="styles.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+</head>
+<body>
+    <form runat="server">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-top">
+                    <div class="logo">
+                        <a href="Default.aspx" style="text-decoration: none;">
+                            <h1><i class="fas fa-laptop"></i>TechStore</h1>
+                        </a>
+                    </div>
+
+                    <div class="search-bar">
+                        <select class="category-select">
+                            <option>Todas las categorías</option>
+                            <option>Laptops</option>
+                            <option>Desktops</option>
+                            <option>Componentes</option>
+                            <option>Accesorios</option>
+                        </select>
+                        <input type="text" placeholder="Buscar computadoras, laptops, componentes..." />
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <div class="header-actions">
+                        <div class="account">
+                            <i class="fas fa-user"></i>
+                            <span>Mi cuenta</span>
+                        </div>
+                        <div class="cart">
+                            <a href="Carrito.aspx" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count">0</span>
+                                <span>Carrito</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="Default.aspx" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+                        <li><a href="Productos.aspx"><i class="fas fa-th-large"></i> Catálogo</a></li>
+                        <!--<li><a href="#"><i class="fas fa-gamepad"></i> Gaming</a></li>
+                        <li><a href="#"><i class="fas fa-briefcase"></i> Oficina</a></li>
+                        <li><a href="#"><i class="fas fa-desktop"></i> Escritorio</a></li>
+                        <li><a href="#"><i class="fas fa-microchip"></i> Componentes</a></li>
+                        <li><a href="#"><i class="fas fa-headphones"></i> Accesorios</a></li>-->
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Contenido principal -->
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Acerca de TechStore</h3>
+                        <ul>
+                            <li><a href="#">Quiénes somos</a></li>
+                            <li><a href="#">Trabaja con nosotros</a></li>
+                            <li><a href="#">Prensa</a></li>
+                            <li><a href="#">Inversionistas</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Servicio al cliente</h3>
+                        <ul>
+                            <li><a href="#">Centro de ayuda</a></li>
+                            <li><a href="#">Devoluciones</a></li>
+                            <li><a href="#">Garantías</a></li>
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Métodos de pago</h3>
+                        <div class="payment-methods">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fab fa-cc-amex"></i>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Síguenos</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 TechStore. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="cart-utils.js"></script>
+        <script src="script.js"></script>
+    </form>
+</body>
+</html>
