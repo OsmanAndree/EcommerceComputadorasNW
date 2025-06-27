@@ -360,9 +360,9 @@
                                         </div>
                                         <div class="product-price">$<%# String.Format("{0:F2}", Eval("PrePro")) %></div>
                                         <div class="product-actions">
-                                            <button class="add-to-cart" onclick='addToCart(<%# Eval("ProID") %>)'>
-                                                <i class="fas fa-cart-plus"></i> Agregar al carrito
-                                            </button>
+                                        <asp:Button ID="btnAgregarCarrito" runat="server" Text="Agregar al carrito"
+                                            CommandArgument='<%# Eval("ProID") %>' CommandName="Agregar"
+                                            CssClass="add-to-cart" OnCommand="btnAgregarCarrito_Command" />
                                             <button class="wishlist-btn">
                                                 <i class="far fa-heart"></i>
                                             </button>

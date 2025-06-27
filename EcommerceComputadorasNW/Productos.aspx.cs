@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -96,7 +97,6 @@ namespace EcommerceComputadorasNW
                     query += $" AND p.CatID IN ({inClause})";
                 }
 
-                // Agregar filtros por marca
                 var marcasSeleccionadas = cblMarcas.Items.Cast<ListItem>().Where(i => i.Selected).Select(i => i.Value).ToList();
                 if (marcasSeleccionadas.Any())
                 {
@@ -104,7 +104,6 @@ namespace EcommerceComputadorasNW
                     query += $" AND p.MarcID IN ({inClause})";
                 }
 
-                // Filtro de precios
                 if (decimal.TryParse(txtMinPrecio.Text, out decimal minPrecio))
                 {
                     query += $" AND p.PrePro >= {minPrecio}";
@@ -114,7 +113,6 @@ namespace EcommerceComputadorasNW
                     query += $" AND p.PrePro <= {maxPrecio}";
                 }
 
-                // Ordenamiento
                 string orden = ddlOrdenar.SelectedValue;
                 switch (orden)
                 {
@@ -154,7 +152,55 @@ namespace EcommerceComputadorasNW
                 stars += "<i class='far fa-star'></i>";
 
             return stars;
-        }  
+        }
+
+        protected void btnAgregarCarrito_Command(object sender, CommandEventArgs e)
+        {
+            int productoID = Convert.ToInt32(e.CommandArgument);
+
+            DataTable carrito;
+            if (Session["Carrito"] == null)
+            {
+                carrito = new DataTable();
+                carrito.Columns.Add("ProID", typeof(int));
+                carrito.Columns.Add("Nombre", typeof(string));
+                carrito.Columns.Add("Precio", typeof(decimal));
+                carrito.Columns.Add("Cantidad", typeof(int));
+                carrito.Columns.Add("Subtotal", typeof(decimal));
+                carrito.Columns.Add("ImaPro", typeof(string)); // 👈 ESTA LÍNEA ES CLAVE
+            }
+            else
+            {
+                carrito = (DataTable)Session["Carrito"];
+            }
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT NomPro, PrePro, ImaPro FROM Productos WHERE ProID = @id", con);
+                cmd.Parameters.AddWithValue("@id", productoID);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    string nombre = reader["NomPro"].ToString();
+                    decimal precio = Convert.ToDecimal(reader["PrePro"]);
+                    string imagen = reader["ImaPro"].ToString(); // 👈 EXTRAER imagen
+
+                    DataRow existing = carrito.Rows.Cast<DataRow>().FirstOrDefault(r => (int)r["ProID"] == productoID);
+                    if (existing != null)
+                    {
+                        existing["Cantidad"] = (int)existing["Cantidad"] + 1;
+                        existing["Subtotal"] = (int)existing["Cantidad"] * (decimal)existing["Precio"];
+                    }
+                    else
+                    {
+                        carrito.Rows.Add(productoID, nombre, precio, 1, precio, imagen); // 👈 AGREGAR imagen
+                    }
+
+                    Session["Carrito"] = carrito;
+                }
+            }
+        }
 
     }
 }
