@@ -35,25 +35,33 @@
     <section class="products-section">
         <div class="container">
             <h2>Productos destacados</h2>
-            <asp:Repeater ID="rptProductos" runat="server">
-                <ItemTemplate>
-                    <div class="product-card" style="animation: fadeInUp 0.6s ease-out;">
-                        <div class="product-image">
-                            <img src='<%# Eval("ImaPro") %>' alt='<%# Eval("NomPro") %>' />
+            <div class="products-grid">
+                <asp:Repeater ID="rptProductos" runat="server">
+                    <ItemTemplate>
+                        <div class="product-card" style="animation: fadeInUp 0.6s ease-out;">
+                            <div class="product-image">
+                                <img src='<%# "img/" + Eval("ImaPro") %>' alt='<%# Eval("NomPro") %>' />
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title"><%# Eval("NomPro") %></h3>
+                                <div class="product-rating">
+                                    <div class="stars">
+                                        <%# GenerarEstrellas(Convert.ToDecimal(Eval("RatingPro"))) %>
+                                    </div>
+                                    <span class="rating-count">(<%# Eval("ReviewsPro") %>)</span>
+                                </div>
+                                <div class="product-price">$<%# String.Format("{0:F2}", Eval("PrePro")) %></div>
+                                <button class="add-to-cart" onclick='addToCartFromIndex(<%# Eval("ProID") %>)'>
+                                    <i class="fas fa-cart-plus"></i> Agregar al carrito
+                                </button>
+                            </div>
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-title"><%# Eval("NomPro") %></h3>
-                            <%-- Podés mostrar rating y reviews si los tienes en BD, sino ignóralo --%>
-                            <div class="product-price">$<%# Eval("PrePro", "{0:N2}") %></div>
-                            <button class="add-to-cart" onclick="addToCartFromIndex(<%# Eval("ProID") %>)">
-                                <i class="fas fa-cart-plus"></i> Agregar al carrito
-                            </button>
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
         </div>
     </section>
+
 
     <!-- Newsletter -->
     <section class="newsletter">

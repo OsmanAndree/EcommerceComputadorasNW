@@ -39,21 +39,39 @@ namespace EcommerceComputadorasNW
 
         private void CargarProductos()
         {
-            using (SqlConnection con = new SqlConnection(connectionString))
+            string connectionString = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"
-                    SELECT TOP 8 ProID, NomPro, PrePro, ImaPro 
-                    FROM Productos 
-                    WHERE EstPro = 1 
-                    ORDER BY NEWID()"; // Trae 8 productos al azar destacados
+                string query = @"SELECT TOP 9 ProID, NomPro, PrePro, ImaPro, RatingPro, ReviewsPro
+                         FROM Productos
+                         WHERE EstPro = 1";
 
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
                 rptProductos.DataSource = dt;
                 rptProductos.DataBind();
             }
+        }
+
+        public string GenerarEstrellas(decimal rating)
+        {
+            int fullStars = (int)Math.Floor(rating);
+            bool halfStar = (rating % 1) != 0;
+            int emptyStars = 5 - (fullStars + (halfStar ? 1 : 0));
+
+            string stars = new string('<', 0); // reset
+            for (int i = 0; i < fullStars; i++)
+                stars += "<i class='fas fa-star'></i>";
+
+            if (halfStar)
+                stars += "<i class='fas fa-star-half-alt'></i>";
+
+            for (int i = 0; i < emptyStars; i++)
+                stars += "<i class='far fa-star'></i>";
+
+            return stars;
         }
     }
 }

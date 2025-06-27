@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Carrito.aspx" />
+    <Content Include="catalogo.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -121,14 +122,26 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="img\alienwareaurorar15.png" />
+    <Content Include="img\asuspn53minipc.png" />
+    <Content Include="img\asusrogzephyrusg14.png" />
     <Content Include="img\components.jpg" />
+    <Content Include="img\dellinspiron15.png" />
+    <Content Include="img\dellpricision5860.png" />
     <Content Include="img\dellxps.jpg" />
     <Content Include="img\desktop.jpg" />
     <Content Include="img\gaming laptops.jpg" />
     <Content Include="img\gaminglaptops.jpg" />
+    <Content Include="img\hppavilon15.png" />
+    <Content Include="img\hppavilondesktop.png" />
     <Content Include="img\imac.jpg" />
+    <Content Include="img\intelnuc12extreme.png" />
+    <Content Include="img\lenovoideapadslim5.png" />
     <Content Include="img\lenovothinkpad.jpg" />
+    <Content Include="img\lenovothinkstationp620.png" />
     <Content Include="img\macbookpro.jpg" />
+    <Content Include="img\minipcs.png" />
+    <Content Include="img\msigf63thin.png" />
     <Content Include="img\officelaptop.jpg" />
     <Content Include="img\pavilongaming.jpg" />
     <Content Include="img\pccustom.jpg" />
@@ -136,6 +149,7 @@
     <Content Include="img\setup.jpg" />
     <Content Include="img\setupin.png" />
     <Content Include="img\workstation.jpg" />
+    <Content Include="img\workstations.png" />
     <Content Include="Login.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="registrologin.css" />
