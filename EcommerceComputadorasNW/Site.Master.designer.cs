@@ -24,6 +24,15 @@ namespace EcommerceComputadorasNW
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
+        /// Control cartCountBadge.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cartCountBadge;
+
+        /// <summary>
         /// Control MainContent.
         /// </summary>
         /// <remarks>

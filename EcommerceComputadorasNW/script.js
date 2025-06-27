@@ -28,6 +28,84 @@ function addToCartFromIndex(productId) {
   }
 }
 
+// Función para actualizar el contador del carrito en el header
+function updateCartBadge(count, badgeId) {
+    const badge = document.getElementById(badgeId);
+    if (badge) {
+        badge.innerText = count;
+        if (count > 0) {
+            badge.style.transform = 'scale(1.2)';
+            badge.style.transition = 'transform 0.2s ease-out';
+            setTimeout(() => {
+                badge.style.transform = 'scale(1)';
+            }, 200);
+        }
+    }
+}
+
+// Función para mostrar mensajes emergentes (toast)
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `toast-notification ${type}`;
+    toast.innerText = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 500);
+    }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Escuchar cambios en las opciones de envío
+    const shippingOptions = document.querySelectorAll('input[name="shipping"]');
+    shippingOptions.forEach(radio => {
+        radio.addEventListener('change', updateSummary);
+    });
+
+    // Llamada inicial para asegurar que los valores son correctos al cargar la página
+    updateSummary();
+});
+
+function updateSummary() {
+    // Obtener el subtotal (necesitamos una forma de leerlo desde el servidor)
+    const subtotalSpan = document.getElementById('<%= subtotal.ClientID %>');
+    let subtotalValue = 0;
+    if (subtotalSpan) {
+        // Convertir el texto de moneda (ej: "$1,234.56") a un número
+        subtotalValue = parseFloat(subtotalSpan.innerText.replace(/[^0-9.-]+/g, ""));
+    }
+
+    // Obtener el costo de envío seleccionado
+    const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+    let shippingValue = 0;
+    if (selectedShipping) {
+        // El precio está en el label asociado
+        const priceSpan = selectedShipping.nextElementSibling.querySelector('.shipping-price');
+        shippingValue = parseFloat(priceSpan.innerText.replace(/[^0-9.-]+/g, ""));
+    }
+
+    // Obtener descuento
+    const discountSpan = document.getElementById('<%= discount.ClientID %>');
+    let discountValue = parseFloat(discountSpan.innerText.replace(/[^0-9.-]+/g, ""));
+
+    // Calcular el total
+    const totalValue = subtotalValue + shippingValue - Math.abs(discountValue); // usamos Math.abs por si el descuento es negativo
+
+    // Actualizar los spans en la página
+    const shippingDisplay = document.getElementById('<%= shipping.ClientID %>');
+    const totalDisplay = document.getElementById('<%= total.ClientID %>');
+
+    if (shippingDisplay) shippingDisplay.innerText = shippingValue.toLocaleString('es-HN', { style: 'currency', currency: 'USD' });
+    if (totalDisplay) totalDisplay.innerText = totalValue.toLocaleString('es-HN', { style: 'currency', currency: 'USD' });
+}
 // Setup event listeners
 function setupEventListeners() {
   // Search functionality

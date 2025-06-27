@@ -154,6 +154,8 @@ namespace EcommerceComputadorasNW
             return stars;
         }
 
+      
+
         protected void btnAgregarCarrito_Command(object sender, CommandEventArgs e)
         {
             int productoID = Convert.ToInt32(e.CommandArgument);
@@ -166,8 +168,8 @@ namespace EcommerceComputadorasNW
                 carrito.Columns.Add("Nombre", typeof(string));
                 carrito.Columns.Add("Precio", typeof(decimal));
                 carrito.Columns.Add("Cantidad", typeof(int));
-                carrito.Columns.Add("Subtotal", typeof(decimal));
-                carrito.Columns.Add("ImaPro", typeof(string)); // 👈 ESTA LÍNEA ES CLAVE
+                carrito.Columns.Add("Subtotal", typeof(decimal), "Precio * Cantidad"); // Expresión para autocalcular
+                carrito.Columns.Add("ImaPro", typeof(string));
             }
             else
             {
@@ -184,20 +186,34 @@ namespace EcommerceComputadorasNW
                 {
                     string nombre = reader["NomPro"].ToString();
                     decimal precio = Convert.ToDecimal(reader["PrePro"]);
-                    string imagen = reader["ImaPro"].ToString(); // 👈 EXTRAER imagen
+                    string imagen = reader["ImaPro"].ToString();
 
                     DataRow existing = carrito.Rows.Cast<DataRow>().FirstOrDefault(r => (int)r["ProID"] == productoID);
                     if (existing != null)
                     {
                         existing["Cantidad"] = (int)existing["Cantidad"] + 1;
-                        existing["Subtotal"] = (int)existing["Cantidad"] * (decimal)existing["Precio"];
                     }
                     else
                     {
-                        carrito.Rows.Add(productoID, nombre, precio, 1, precio, imagen); // 👈 AGREGAR imagen
+                        carrito.Rows.Add(productoID, nombre, precio, 1, precio, imagen);
                     }
 
                     Session["Carrito"] = carrito;
+
+                    // --- CÓDIGO ACTUALIZADO PARA MOSTRAR MENSAJE Y ACTUALIZAR HEADER ---
+                    int totalItems = carrito.AsEnumerable().Sum(row => row.Field<int>("Cantidad"));
+
+                    // 1. Buscamos el control 'span' en la MasterPage
+                    var badgeControl = this.Master.FindControl("cartCountBadge") as System.Web.UI.HtmlControls.HtmlGenericControl;
+
+                    if (badgeControl != null)
+                    {
+                        // 2. Obtenemos su ID de cliente y lo pasamos a la función de JavaScript
+                        string script = $"showToast('¡Producto agregado al carrito!', 'success'); updateCartBadge({totalItems}, '{badgeControl.ClientID}');";
+
+                        // 3. Registramos el script
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "cartUpdate", script, true);
+                    }
                 }
             }
         }

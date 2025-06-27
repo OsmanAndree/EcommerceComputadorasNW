@@ -79,7 +79,11 @@
                             <i class="fas fa-arrow-left"></i> Continuar Comprando
                         </a>
                     </div>
-
+                     <asp:Panel ID="pnlCompraExitosa" runat="server" Visible="false" CssClass="text-center" style="padding: 60px 0;">
+                        <div style="font-size: 70px; color: #28a745;"><i class="fas fa-check-circle"></i></div>
+                        <h2 style="margin-top: 20px;">¡Compra realizada con éxito!</h2>
+                        
+                    </asp:Panel>
                     <!-- Cart Items List -->
                    <asp:Repeater ID="rptCarrito" runat="server">
                         <ItemTemplate>
@@ -112,7 +116,7 @@
 
                     <!-- Cart Actions -->
                     <div class="cart-actions">
-                        <a href="catalogo.html" class="continue-shopping-btn">
+                        <a href="Productos.aspx" class="continue-shopping-btn">
                             <i class="fas fa-arrow-left"></i> Continuar Comprando
                         </a>
                         <button class="clear-cart-btn" onclick="clearCart()">
@@ -140,19 +144,19 @@
                         <div class="summary-details">
                             <div class="summary-row">
                                 <span>Subtotal:</span>
-                                <span id="subtotal">$0.00</span>
+                                <span id="subtotal" runat="server">$0.00</span>
                             </div>
                             <div class="summary-row">
                                 <span>Descuento:</span>
-                                <span id="discount">-$0.00</span>
+                                <span id="discount" runat="server">-$0.00</span>
                             </div>
                             <div class="summary-row">
                                 <span>Envío:</span>
-                                <span id="shipping">$0.00</span>
+                                <span id="shipping" runat="server">$0.00</span>
                             </div>
                             <div class="summary-row total">
                                 <span>Total:</span>
-                                <span id="total">$0.00</span>
+                                <span id="total" runat="server">$0.00</span>
                             </div>
                         </div>
 

@@ -43,12 +43,13 @@
                             <span>Mi cuenta</span>
                         </div>
                         <div class="cart">
-                            <a href="Carrito.aspx" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="cart-count">0</span>
-                                <span>Carrito</span>
-                            </a>
-                        </div>
+    <a href="Carrito.aspx" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+        <i class="fas fa-shopping-cart"></i>
+        
+        <span class="cart-count" id="cartCountBadge" runat="server">0</span>
+        <span>Carrito</span>
+    </a>
+</div>
                     </div>
                 </div>
 
