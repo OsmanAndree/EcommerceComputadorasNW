@@ -142,7 +142,7 @@
                     </div>
 
                     <div class="auth-footer">
-                        <p>¿No tienes una cuenta? <a href="#">Regístrate aquí</a></p>
+                        <p>¿No tienes una cuenta? <a href="Registro.aspx">Regístrate aquí</a></p>
                     </div>
                 </div>
             </div>
