@@ -148,6 +148,7 @@
             </div>
         </div>
     </form>
+    <script src="Scripts/login.js"></script>
 
     <script>
         function togglePassword(id) {

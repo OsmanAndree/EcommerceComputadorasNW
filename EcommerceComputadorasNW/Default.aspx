@@ -7,7 +7,7 @@
         <div class="banner-content">
             <h2>Las mejores computadoras al mejor precio</h2>
             <p>Encuentra laptops gaming, PCs de oficina y componentes de última generación</p>
-            <button class="cta-button">Ver ofertas</button>
+            <a href="Productos.aspx" class="cta-button" style="text-decoration: none;">Ver productos</a>
         </div>
         <div class="banner-image">
             <img src="img/setupin.png" alt="Gaming Setup" />
@@ -51,9 +51,9 @@
                                     <span class="rating-count">(<%# Eval("ReviewsPro") %>)</span>
                                 </div>
                                 <div class="product-price">$<%# String.Format("{0:F2}", Eval("PrePro")) %></div>
-                                <button class="add-to-cart" onclick='addToCartFromIndex(<%# Eval("ProID") %>)'>
-                                    <i class="fas fa-cart-plus"></i> Agregar al carrito
-                                </button>
+                                <a href="Productos.aspx" class="add-to-cart" style="text-decoration: none;">
+                                    <i class="fas fa-eye"></i> Ver en catálogo
+                                </a>
                             </div>
                         </div>
                     </ItemTemplate>

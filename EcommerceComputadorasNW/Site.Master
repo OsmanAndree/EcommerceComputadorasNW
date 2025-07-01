@@ -39,17 +39,18 @@
 
                     <div class="header-actions">
                         <div class="account">
+                            <a href="Cuenta.aspx" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
                             <i class="fas fa-user"></i>
                             <span>Mi cuenta</span>
+                            </a>
                         </div>
                         <div class="cart">
-    <a href="Carrito.aspx" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-        <i class="fas fa-shopping-cart"></i>
-        
-        <span class="cart-count" id="cartCountBadge" runat="server">0</span>
-        <span>Carrito</span>
-    </a>
-</div>
+                        <a href="Carrito.aspx" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cartCountBadge" runat="server">0</span>
+                            <span>Carrito</span>
+                        </a>
+                        </div>
                     </div>
                 </div>
 

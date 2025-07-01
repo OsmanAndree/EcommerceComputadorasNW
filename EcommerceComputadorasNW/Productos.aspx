@@ -227,7 +227,7 @@
                 <h1>Catálogo de Productos</h1>
                 <p>Descubre nuestra amplia selección de computadoras y tecnología</p>
                 <div class="breadcrumb">
-                    <a href="index.html">Inicio</a>
+                    <a href="Default.aspx">Inicio</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Catálogo</span>
                 </div>
@@ -274,8 +274,7 @@
                                   AutoPostBack="true" OnSelectedIndexChanged="Filtros_Changed" />
                         </div>
 
-                        <!-- Rating Filter -->
-                        <div class="filter-group">
+                        <!--<div class="filter-group">
                             <h4>Calificación</h4>
                             <div class="filter-options">
                                 <label class="filter-option">
@@ -294,7 +293,7 @@
                                     <span class="count">(8)</span>
                                 </label>
                             </div>
-                        </div>
+                        </div>-->
 
                         <!-- Clear Filters Button -->
                         <button class="clear-filters-btn" onclick="clearFilters()">

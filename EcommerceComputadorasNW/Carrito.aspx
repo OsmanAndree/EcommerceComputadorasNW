@@ -49,9 +49,9 @@
                 <h1>Carrito de Compras</h1>
                 <p>Revisa tus productos y completa tu compra</p>
                 <div class="breadcrumb">
-                    <a href="index.html">Inicio</a>
+                    <a href="Default.aspx">Inicio</a>
                     <i class="fas fa-chevron-right"></i>
-                    <a href="catalogo.html">Catálogo</a>
+                    <a href="Productos.aspx">Catálogo</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Carrito</span>
                 </div>
@@ -67,18 +67,18 @@
                 <main class="cart-items">
                     <div class="cart-header">
                         <h2>Productos en el carrito</h2>
-                        <span class="items-count">(<span id="cartItemsCount">0</span> productos)</span>
                     </div>
 
                     <!-- Empty Cart Message -->
-                    <div id="emptyCart" class="empty-cart" style="display: none;">
+                    <!--<div id="emptyCart" class="empty-cart" style="display: none;">
                         <i class="fas fa-shopping-cart"></i>
                         <h3>Tu carrito está vacío</h3>
                         <p>Agrega algunos productos para comenzar tu compra</p>
                         <a href="catalogo.html" class="continue-shopping-btn">
                             <i class="fas fa-arrow-left"></i> Continuar Comprando
                         </a>
-                    </div>
+                    </div>-->
+
                      <asp:Panel ID="pnlCompraExitosa" runat="server" Visible="false" CssClass="text-center" style="padding: 60px 0;">
                         <div style="font-size: 70px; color: #28a745;"><i class="fas fa-check-circle"></i></div>
                         <h2 style="margin-top: 20px;">¡Compra realizada con éxito!</h2>

@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <asp:Literal ID="litToast" runat="server" EnableViewState="false" />
+
     <div class="auth-container">
         <!-- Background Elements -->
         <div class="bg-shapes">
@@ -44,7 +46,7 @@
                     <p>Únete a TechStore y descubre las mejores ofertas</p>
                 </div>
 
-                <form class="auth-form" id="registerForm">
+                <form id="registerForm" runat="server" class="auth-form">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName">
@@ -54,6 +56,7 @@
                             <input 
                                 type="text" 
                                 id="firstName" 
+                                runat="server"
                                 name="firstName" 
                                 required
                                 placeholder="Tu nombre"
@@ -69,6 +72,7 @@
                             <input 
                                 type="text" 
                                 id="lastName" 
+                                runat="server"
                                 name="lastName" 
                                 required
                                 placeholder="Tu apellido"
@@ -84,7 +88,8 @@
                         </label>
                         <input 
                             type="email" 
-                            id="registerEmail" 
+                            id="registerEmail"
+                            runat="server"
                             name="email" 
                             required
                             placeholder="tu@email.com"
@@ -100,7 +105,8 @@
                         <div class="password-input">
                             <input 
                                 type="password" 
-                                id="registerPassword" 
+                                id="registerPassword"
+                                runat="server"
                                 name="password" 
                                 required
                                 placeholder="Mínimo 8 caracteres"
@@ -126,7 +132,8 @@
                         <div class="password-input">
                             <input 
                                 type="password" 
-                                id="confirmPassword" 
+                                id="confirmPassword"
+                                runat="server"
                                 name="confirmPassword" 
                                 required
                                 placeholder="Confirma tu contraseña"
@@ -145,7 +152,8 @@
                         </label>
                         <input 
                             type="tel" 
-                            id="phone" 
+                            id="phone"
+                            runat="server"
                             name="phone"
                             placeholder="+1 (555) 123-4567"
                         >
@@ -168,10 +176,7 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="auth-button primary">
-                        <span>Crear Cuenta</span>
-                        <div class="button-loader"></div>
-                    </button>
+                    <asp:Button ID="btnRegistrar" runat="server" Text="Crear Cuenta" CssClass="auth-button primary" OnClick="btnRegistrar_Click" />
                 </form>
 
                 <div class="divider">
@@ -200,7 +205,7 @@
         </div>
     </div>
 
-    <script src="auth-script.js"></script>
+    <script src="Scripts/register.js"></script>
 </body>
 </html>
 

@@ -1,21 +1,18 @@
 function changeView(view) {
     const productsGrid = document.getElementById("productsGrid");
 
-    // Actualizar clase CSS
     productsGrid.className = `products-grid ${view}-view`;
 
-    // Actualizar botones visuales
     document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelector(`[data-view="${view}"]`).classList.add('active');
 
-    // Enviar la vista seleccionada al servidor
     fetch(location.href + "?view=" + view, {
         method: 'POST',
         headers: {
             "X-Requested-With": "XMLHttpRequest"
         }
     }).then(() => {
-        __doPostBack('productsGrid', view); // Simula un postback parcial
+        __doPostBack('productsGrid', view); 
     });
 }
 
@@ -31,14 +28,12 @@ function applyFilters() {
     const maxPrice = document.getElementById('maxPrice').value || 5000;
     const orden = document.getElementById('sortSelect').value;
 
-    // Solo tomamos un valor de categoría y marca (puedes adaptar a múltiples si lo deseas)
     document.getElementById('<%= hfCategoria.ClientID %>').value = categorias[0] || 0;
     document.getElementById('<%= hfMarca.ClientID %>').value = marcas[0] || 0;
     document.getElementById('<%= hfPrecioMin.ClientID %>').value = minPrice;
     document.getElementById('<%= hfPrecioMax.ClientID %>').value = maxPrice;
     document.getElementById('<%= hfOrden.ClientID %>').value = orden;
 
-    // Ejecutar el PostBack al servidor
     document.getElementById('<%= btnFiltrar.ClientID %>').click();
 }
 
