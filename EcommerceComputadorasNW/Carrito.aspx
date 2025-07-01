@@ -3,6 +3,57 @@
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <style>
+        .compra-exitosa-panel {
+        text-align: center;
+        padding: 60px 20px;
+        background-color: #f0fdf4;
+        border: 2px solid #22c55e;
+        border-radius: 16px;
+        animation: fadeInZoom 1s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        margin-bottom: 30px;
+        }
+
+        .compra-exitosa-icon {
+            font-size: 80px;
+            color: #22c55e;
+            animation: bounceIn 0.8s ease;
+        }
+
+        .compra-exitosa-title {
+            margin-top: 20px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #14532d;
+        }
+
+        @keyframes fadeInZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
         .cart-item {
             display: flex;
             align-items: center;
@@ -79,11 +130,11 @@
                         </a>
                     </div>-->
 
-                     <asp:Panel ID="pnlCompraExitosa" runat="server" Visible="false" CssClass="text-center" style="padding: 60px 0;">
-                        <div style="font-size: 70px; color: #28a745;"><i class="fas fa-check-circle"></i></div>
-                        <h2 style="margin-top: 20px;">¡Compra realizada con éxito!</h2>
-                        
+                     <asp:Panel ID="pnlCompraExitosa" runat="server" Visible="false" CssClass="compra-exitosa-panel">
+                        <div class="compra-exitosa-icon"><i class="fas fa-check-circle"></i></div>
+                        <h2 class="compra-exitosa-title">¡Compra realizada con éxito!</h2>
                     </asp:Panel>
+
                     <!-- Cart Items List -->
                    <asp:Repeater ID="rptCarrito" runat="server">
                         <ItemTemplate>
@@ -114,19 +165,19 @@
                     </asp:Panel>
 
 
-                    <!-- Cart Actions -->
-                    <div class="cart-actions">
+                    <asp:Panel ID="pnlCartActions" runat="server" CssClass="cart-actions" Visible="false">
                         <a href="Productos.aspx" class="continue-shopping-btn">
                             <i class="fas fa-arrow-left"></i> Continuar Comprando
                         </a>
                         <button class="clear-cart-btn" onclick="clearCart()">
                             <i class="fas fa-trash"></i> Vaciar Carrito
                         </button>
-                    </div>
+                    </asp:Panel>
+
                 </main>
 
                 <!-- Order Summary -->
-                <aside class="order-summary">
+                <asp:Panel ID="pnlResumen" runat="server" CssClass="order-summary" Visible="false">
                     <div class="summary-card">
                         <h3><i class="fas fa-receipt"></i> Resumen de la Orden</h3>
                         
@@ -216,7 +267,7 @@
                             </div>
                         </div>
                     </div>
-                </aside>
+                </asp:Panel>
             </div>
         </div>
     </section>

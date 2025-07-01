@@ -25,8 +25,8 @@
                 </div>
                 
                  <nav class="header-nav">
-                     <a href="Index.aspx">Inicio</a>
-                     <a href="MiCuenta.aspx" class="active">Mi Cuenta</a>
+                     <a href="Default.aspx">Inicio</a>
+                     <a href="Cuenta.aspx" class="active">Mi Cuenta</a>
                      <a href="Carrito.aspx">Carrito</a>
                   </nav>
 

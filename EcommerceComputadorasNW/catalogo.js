@@ -1,3 +1,7 @@
+function changePage(pageNumber) {
+    __doPostBack('upProductos', pageNumber);
+}
+
 function changeView(view) {
     const productsGrid = document.getElementById("productsGrid");
 

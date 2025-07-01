@@ -17,7 +17,6 @@ namespace EcommerceComputadorasNW
         protected void Page_Load(object sender, EventArgs e)
         {
             CargarCarrito();
-            // 👇 Registra el script en cada carga de página
             string script = @"
         document.addEventListener('DOMContentLoaded', function () {
             const shippingOptions = document.querySelectorAll('input[name$=""shipping""]');
@@ -55,28 +54,31 @@ namespace EcommerceComputadorasNW
             {
                 DataTable carrito = (DataTable)Session["Carrito"];
 
-                // 1. Mostrar los productos y ocultar el mensaje de "vacío"
                 rptCarrito.DataSource = carrito;
                 rptCarrito.DataBind();
                 rptCarrito.Visible = true;
                 pnlCarritoVacio.Visible = false;
+                pnlCartActions.Visible = true;
+                pnlResumen.Visible = true;
+                btnPagar.Visible = true;
 
-                // 2. Calcular y mostrar los totales
                 decimal subtotalValue = carrito.AsEnumerable().Sum(r => Convert.ToDecimal(r["Subtotal"]));
-                decimal shippingValue = 0.00m; // Por defecto, el envío es gratis
-                decimal discountValue = 0.00m; // Aún no hay lógica de cupones
+                decimal shippingValue = 0.00m;
+                decimal discountValue = 0.00m;
                 decimal totalValue = subtotalValue + shippingValue - discountValue;
 
-                subtotal.InnerText = subtotalValue.ToString("C"); // "C" formatea como moneda
+                subtotal.InnerText = subtotalValue.ToString("C");
                 shipping.InnerText = shippingValue.ToString("C");
                 discount.InnerText = "-" + discountValue.ToString("C");
                 total.InnerText = totalValue.ToString("C");
             }
             else
             {
-                // Si el carrito está vacío, ocultar la lista y mostrar el mensaje
                 rptCarrito.Visible = false;
                 pnlCarritoVacio.Visible = true;
+                pnlCartActions.Visible = false;
+                pnlResumen.Visible = false;
+                btnPagar.Visible = false;
             }
         }
 
@@ -86,7 +88,6 @@ namespace EcommerceComputadorasNW
             {
                 DataTable carrito = (DataTable)Session["Carrito"];
 
-                // Usamos "using" para asegurar que la conexión y la transacción se cierren correctamente
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
@@ -94,8 +95,7 @@ namespace EcommerceComputadorasNW
                     {
                         try
                         {
-                            // PASO 1: Insertar en la tabla maestra `Carrito`
-                            int usuarioID = 2; // Usuario de ejemplo
+                            int usuarioID = 2; 
                             if (Session["UserID"] != null)
                             {
                                 usuarioID = Convert.ToInt32(Session["UserID"]);
@@ -115,15 +115,12 @@ namespace EcommerceComputadorasNW
                                 carritoID = (int)cmd.ExecuteScalar();
                             }
 
-                            // PASO 2: Insertar los detalles
-                            // 👇 CAMBIO CLAVE: Definimos el comando y los parámetros UNA SOLA VEZ, fuera del bucle.
                             string insertDetalleQuery = @"
                         INSERT INTO CarritoDetalle (CarID, ProID, CantPro, PrecUni, FechAg)
                         VALUES (@CarID, @ProID, @CantPro, @PrecUni, @FechAg)";
 
                             using (SqlCommand cmdDetalle = new SqlCommand(insertDetalleQuery, con, trans))
                             {
-                                // Definimos los parámetros que vamos a usar en el bucle
                                 cmdDetalle.Parameters.Add("@CarID", SqlDbType.Int);
                                 cmdDetalle.Parameters.Add("@ProID", SqlDbType.Int);
                                 cmdDetalle.Parameters.Add("@CantPro", SqlDbType.Int);
@@ -132,7 +129,6 @@ namespace EcommerceComputadorasNW
 
                                 foreach (DataRow row in carrito.Rows)
                                 {
-                                    // Actualizamos los valores de los parámetros en cada iteración
                                     cmdDetalle.Parameters["@CarID"].Value = carritoID;
                                     cmdDetalle.Parameters["@ProID"].Value = row["ProID"];
                                     cmdDetalle.Parameters["@CantPro"].Value = row["Cantidad"];
@@ -143,13 +139,12 @@ namespace EcommerceComputadorasNW
                                 }
                             }
 
-                            trans.Commit(); // Confirmamos la transacción SÓLO si todo salió bien
+                            trans.Commit(); 
 
-                            // Limpiar carrito y redirigir
                             Session["Carrito"] = null;
-                            pnlCompraExitosa.Visible = true;  // Muestra el panel de éxito
-                            rptCarrito.Visible = false;       // Oculta la lista de productos
-                            pnlCarritoVacio.Visible = false;  // Oculta el mensaje de carrito vacío
+                            pnlCompraExitosa.Visible = true;  
+                            rptCarrito.Visible = false;       
+                            pnlCarritoVacio.Visible = false;  
                             subtotal.InnerText = "$0.00";
                             discount.InnerText = "-$0.00";
                             shipping.InnerText = "$0.00";

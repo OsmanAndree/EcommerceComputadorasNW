@@ -21,6 +21,13 @@ namespace EcommerceComputadorasNW
                 CargarMarcas();
                 CargarProductos();
                 productsGrid.Attributes["class"] = $"products-grid {CurrentView}-view";
+
+                ddlOrdenar.Items.Clear();
+                ddlOrdenar.Items.Add(new ListItem("Relevancia", "relevance"));
+                ddlOrdenar.Items.Add(new ListItem("Precio: Menor a Mayor", "price-low"));
+                ddlOrdenar.Items.Add(new ListItem("Precio: Mayor a Menor", "price-high"));
+                ddlOrdenar.Items.Add(new ListItem("Mejor Calificación", "rating"));
+                ddlOrdenar.Items.Add(new ListItem("Más Recientes", "newest"));
             }
         }
         private string CurrentView
@@ -75,6 +82,7 @@ namespace EcommerceComputadorasNW
 
         protected void Filtros_Changed(object sender, EventArgs e)
         {
+            ddlOrdenar.SelectedValue = DropDownList1.SelectedValue;
             CargarProductos();
         }
 
@@ -154,7 +162,7 @@ namespace EcommerceComputadorasNW
             return stars;
         }
 
-      
+
 
         protected void btnAgregarCarrito_Command(object sender, CommandEventArgs e)
         {
@@ -168,7 +176,7 @@ namespace EcommerceComputadorasNW
                 carrito.Columns.Add("Nombre", typeof(string));
                 carrito.Columns.Add("Precio", typeof(decimal));
                 carrito.Columns.Add("Cantidad", typeof(int));
-                carrito.Columns.Add("Subtotal", typeof(decimal), "Precio * Cantidad"); // Expresión para autocalcular
+                carrito.Columns.Add("Subtotal", typeof(decimal), "Precio * Cantidad");
                 carrito.Columns.Add("ImaPro", typeof(string));
             }
             else
@@ -200,18 +208,14 @@ namespace EcommerceComputadorasNW
 
                     Session["Carrito"] = carrito;
 
-                    // --- CÓDIGO ACTUALIZADO PARA MOSTRAR MENSAJE Y ACTUALIZAR HEADER ---
                     int totalItems = carrito.AsEnumerable().Sum(row => row.Field<int>("Cantidad"));
 
-                    // 1. Buscamos el control 'span' en la MasterPage
                     var badgeControl = this.Master.FindControl("cartCountBadge") as System.Web.UI.HtmlControls.HtmlGenericControl;
 
                     if (badgeControl != null)
                     {
-                        // 2. Obtenemos su ID de cliente y lo pasamos a la función de JavaScript
                         string script = $"showToast('¡Producto agregado al carrito!', 'success'); updateCartBadge({totalItems}, '{badgeControl.ClientID}');";
 
-                        // 3. Registramos el script
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "cartUpdate", script, true);
                     }
                 }
