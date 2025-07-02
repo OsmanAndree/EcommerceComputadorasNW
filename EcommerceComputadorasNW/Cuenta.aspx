@@ -71,7 +71,7 @@
                             <i class="fas fa-user"></i>
                             <span>Mi Perfil</span>
                         </a>
-                        <a href="#" class="nav-item" data-section="orders">
+                        <!--<a href="#" class="nav-item" data-section="orders">
                             <i class="fas fa-shopping-bag"></i>
                             <span>Mis Pedidos</span>
                             <span class="badge">3</span>
@@ -96,7 +96,7 @@
                         <a href="#" class="nav-item" data-section="notifications">
                             <i class="fas fa-bell"></i>
                             <span>Notificaciones</span>
-                        </a>
+                        </a>-->
                         <a href="Login.aspx" class="nav-item logout" onclick="logout()">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Cerrar Sesión</span>
@@ -190,7 +190,7 @@
                         </div>
                         </section>
                         <!-- Sección de Órdenes -->
-                        <section id="orders" class="content-section">
+                        <!--<section id="orders" class="content-section">
                             <div class="section-header">
                                 <h2>Mis Pedidos</h2>
                                 <p>Historial de todas tus compras</p>
@@ -533,7 +533,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section>-->
                      </div>
             </div>
 
