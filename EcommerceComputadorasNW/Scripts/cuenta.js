@@ -471,3 +471,4 @@ function initializeInteractiveElements() {
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(initializeInteractiveElements, 500)
 })
+}

@@ -68,7 +68,7 @@
             </div>
         </header>
 
-        <!-- Contenido principal -->
+        <!-- Contenido Principal -->
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 
         <!-- Footer -->

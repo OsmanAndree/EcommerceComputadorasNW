@@ -93,7 +93,7 @@
 
     </style>
 
-    <!-- Page Header -->
+    <!-- Header de la Página -->
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
@@ -110,7 +110,7 @@
         </div>
     </section>
 
-    <!-- Cart Section -->
+    <!-- Sección del Carrito -->
     <section class="cart-section">
         <div class="container">
             <div class="cart-layout">
@@ -120,7 +120,7 @@
                         <h2>Productos en el carrito</h2>
                     </div>
 
-                    <!-- Empty Cart Message -->
+                    <!-- Mensaje de Carrito Vacío -->
                     <!--<div id="emptyCart" class="empty-cart" style="display: none;">
                         <i class="fas fa-shopping-cart"></i>
                         <h3>Tu carrito está vacío</h3>
@@ -135,7 +135,7 @@
                         <h2 class="compra-exitosa-title">¡Compra realizada con éxito!</h2>
                     </asp:Panel>
 
-                    <!-- Cart Items List -->
+                    <!-- Lista de Items del Carrito -->
                    <asp:Repeater ID="rptCarrito" runat="server">
                         <ItemTemplate>
                             <div class="cart-item">
@@ -169,19 +169,17 @@
                         <a href="Productos.aspx" class="continue-shopping-btn">
                             <i class="fas fa-arrow-left"></i> Continuar Comprando
                         </a>
-                        <button class="clear-cart-btn" onclick="clearCart()">
-                            <i class="fas fa-trash"></i> Vaciar Carrito
-                        </button>
+                        <asp:Button ID="btnVaciarCarrito" runat="server" CssClass="clear-cart-btn" Text="Vaciar Carrito" OnClick="btnVaciarCarrito_Click" />
                     </asp:Panel>
 
                 </main>
 
-                <!-- Order Summary -->
+                <!-- Resumen de la Orden -->
                 <asp:Panel ID="pnlResumen" runat="server" CssClass="order-summary" Visible="false">
                     <div class="summary-card">
                         <h3><i class="fas fa-receipt"></i> Resumen de la Orden</h3>
                         
-                        <!-- Coupon Code -->
+                        <!-- Cupones -->
                         <div class="coupon-section">
                             <h4>Código de Descuento</h4>
                             <div class="coupon-input">
@@ -191,7 +189,7 @@
                             <div id="couponMessage" class="coupon-message"></div>
                         </div>
 
-                        <!-- Summary Details -->
+                        <!-- Detalles Resumidos -->
                         <div class="summary-details">
                             <div class="summary-row">
                                 <span>Subtotal:</span>
@@ -211,7 +209,7 @@
                             </div>
                         </div>
 
-                        <!-- Shipping Options -->
+                        <!-- Opciones de Envío -->
                         <div class="shipping-options">
                             <h4>Opción de Envío</h4>
                             <div class="shipping-option">
@@ -246,17 +244,17 @@
                             </div>
                         </div>
 
-                        <!-- Checkout Button -->
+                        <!-- Botón de Pagar -->
                         <asp:Button ID="btnPagar" runat="server" CssClass="checkout-btn" Text="Proceder al Pago" OnClick="btnPagar_Click" />
 
 
-                        <!-- Security Info -->
+                        <!-- Información de Seguridad -->
                         <div class="security-info">
                             <i class="fas fa-shield-alt"></i>
                             <span>Compra 100% segura con encriptación SSL</span>
                         </div>
 
-                        <!-- Payment Methods -->
+                        <!-- Formas de Pago -->
                         <div class="payment-methods">
                             <span>Aceptamos:</span>
                             <div class="payment-icons">

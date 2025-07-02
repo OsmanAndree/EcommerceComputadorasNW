@@ -56,7 +56,7 @@
         <asp:Literal ID="litToast" runat="server" EnableViewState="false" />
 
         <div class="auth-container">
-            <!-- Background Elements -->
+            <!-- Elementos del Fondo -->
             <div class="bg-shapes">
                 <div class="shape shape-1"></div>
                 <div class="shape shape-2"></div>
@@ -78,7 +78,7 @@
                 </div>
             </header>
 
-            <!-- Login Form -->
+            <!-- Formulario de Inicio de Sesión -->
             <div class="auth-wrapper">
                 <div class="auth-card">
                     <div class="auth-card-header">

@@ -82,6 +82,28 @@ namespace EcommerceComputadorasNW
             }
         }
 
+        protected void btnVaciarCarrito_Click(object sender, EventArgs e)
+        {
+            Session["Carrito"] = null;
+            rptCarrito.Visible = false;
+            pnlCarritoVacio.Visible = true;
+            pnlCartActions.Visible = false;
+            pnlResumen.Visible = false;
+            btnPagar.Visible = false;
+
+            subtotal.InnerText = "$0.00";
+            discount.InnerText = "-$0.00";
+            shipping.InnerText = "$0.00";
+            total.InnerText = "$0.00";
+
+            var badgeControl = this.Master.FindControl("cartCountBadge") as System.Web.UI.HtmlControls.HtmlGenericControl;
+            if (badgeControl != null)
+            {
+                string script = $"updateCartBadge(0, '{badgeControl.ClientID}');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "cartCleared", script, true);
+            }
+        }
+
         protected void btnPagar_Click(object sender, EventArgs e)
         {
             if (Session["Carrito"] != null && ((DataTable)Session["Carrito"]).Rows.Count > 0)

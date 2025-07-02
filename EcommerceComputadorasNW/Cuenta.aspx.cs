@@ -41,10 +41,16 @@ namespace EcommerceComputadorasNW
                     lblNomUsu.Text = reader["NomUsu"].ToString();
                     lblCorreo.Text = reader["CorUsu"].ToString();
                     lblNombreCompleto.Text = reader["NomUsu"].ToString();
+
+                    Session["NomUsu"] = reader["NomUsu"].ToString();
+                    Session["CorUsu"] = reader["CorUsu"].ToString();
+                    Session["TelUsu"] = reader["TelUsu"].ToString();
+                    Session["RolUsu"] = reader["RolUsu"].ToString();
                 }
 
                 reader.Close();
             }
         }
+
     }
 }

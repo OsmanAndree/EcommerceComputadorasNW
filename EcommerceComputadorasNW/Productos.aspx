@@ -220,7 +220,7 @@
         }
 
     </style>
-    <!-- Page Header -->
+    <!-- Header de la Página -->
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
@@ -235,16 +235,17 @@
         </div>
     </section>
 
-    <!-- Filters and Products Section -->
+    <!-- Sección de Productos y Filtros -->
     <section class="catalog-section">
         <div class="container">
             <div class="catalog-layout">
-                <!-- Sidebar Filters -->
+
+                <!-- Filtros de Barra Lateral -->
                 <aside class="filters-sidebar">
                     <div class="filter-card">
                         <h3><i class="fas fa-filter"></i> Filtros</h3>
 
-                        <!-- Price Range Filter -->
+                        <!-- Filtro de Rango de Precio -->
                         <div class="filter-group">
                             <h4>Rango de Precio</h4>
                             <div class="price-inputs">
@@ -254,7 +255,7 @@
                             </div>
                         </div>
 
-                        <!-- Category Filter -->
+                        <!-- Filtro de Categoría -->
                         <div class="filter-group">
                             <h4>Categoría</h4>
                             <asp:CheckBoxList ID="cblCategorias" runat="server" 
@@ -264,7 +265,7 @@
                                   AutoPostBack="true" OnSelectedIndexChanged="Filtros_Changed" />
                         </div>
 
-                        <!-- Brand Filter -->
+                        <!-- Filtro de Marca -->
                         <div class="filter-group">
                             <h4>Marca</h4>
                             <asp:CheckBoxList ID="cblMarcas" runat="server" 
@@ -295,16 +296,16 @@
                             </div>
                         </div>-->
 
-                        <!-- Clear Filters Button -->
+                        <!-- Botón para Limpiar Filtros -->
                         <button class="clear-filters-btn" onclick="clearFilters()">
                             <i class="fas fa-times"></i> Limpiar Filtros
                         </button>
                     </div>
                 </aside>
 
-                <!-- Products Area -->
+                <!-- Área de Productos -->
                 <main class="products-area">
-                    <!-- Products Header -->
+                    <!-- Encabezado de Productos -->
                     <div class="products-header">
                         <div class="products-info">
                             <h2>Productos</h2>
@@ -331,7 +332,7 @@
                         </div>
                     </div>
 
-                    <!-- Products Grid -->
+                    <!-- Grid de Productos -->
                   <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                   <asp:UpdatePanel ID="upProductos" runat="server" UpdateMode="Conditional">
                   <ContentTemplate>
@@ -373,7 +374,8 @@
                     </div>
                 </ContentTemplate>
                 </asp:UpdatePanel>
-                    <!-- Pagination -->
+
+                    <!-- Paginación -->
                     <div class="pagination">
                         <button class="pagination-btn" onclick="changePage('prev')">
                             <i class="fas fa-chevron-left"></i> Anterior
@@ -389,12 +391,11 @@
                             Siguiente <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
-                    <!-- Controles ocultos para filtros -->
+
                     <asp:DropDownList ID="ddlCategoria" runat="server" style="display:none;"></asp:DropDownList>
                     <asp:DropDownList ID="ddlMarca" runat="server" style="display:none;"></asp:DropDownList>
                     <asp:DropDownList ID="ddlOrdenar" runat="server" style="display:none;"></asp:DropDownList>
 
-                    <!-- Span oculto para mostrar cantidad -->
                     <span id="Span1" runat="server" ClientIDMode="Static" style="display:none;">0</span>
                 </main>
             </div>
