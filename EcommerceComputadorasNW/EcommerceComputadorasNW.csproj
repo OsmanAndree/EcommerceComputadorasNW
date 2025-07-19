@@ -119,6 +119,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\cuenta.css" />
+    <Content Include="Content\productos.css" />
     <Content Include="Content\Registro.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Cuenta.aspx" />
