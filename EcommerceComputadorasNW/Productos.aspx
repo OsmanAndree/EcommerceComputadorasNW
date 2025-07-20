@@ -637,5 +637,5 @@
             </div>
         </div>
     </section>
-    <script src="catalogo.js"></script>
+    <script src="Scripts/catalogo.js"></script>
 </asp:Content>

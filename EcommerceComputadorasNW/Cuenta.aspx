@@ -141,7 +141,7 @@
                                 </div>
                             </div>
 
-                            <div class="profile-card">
+                            <!--<div class="profile-card">
                             <div class="card-header">
                                 <h3>Estadísticas de Cuenta</h3>
                             </div>
@@ -187,9 +187,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
+
                         </section>
-                        <!-- Sección de Órdenes -->
+                        <!-- Sección de Órdenes 
                         <!--<section id="orders" class="content-section">
                             <div class="section-header">
                                 <h2>Mis Pedidos</h2>

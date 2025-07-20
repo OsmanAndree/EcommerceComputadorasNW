@@ -164,7 +164,7 @@ namespace EcommerceComputadorasNW
                             trans.Commit(); 
 
                             Session["Carrito"] = null;
-                            pnlCompraExitosa.Visible = true;  
+                            //pnlCompraExitosa.Visible = true;  
                             rptCarrito.Visible = false;       
                             pnlCarritoVacio.Visible = false;  
                             subtotal.InnerText = "$0.00";
@@ -184,6 +184,8 @@ namespace EcommerceComputadorasNW
                             trans.Rollback();
                             Response.Write("Error al procesar el pago: " + ex.Message);
                         }
+                        Response.Redirect("Pedido.aspx");
+
                     }
                 }
             }

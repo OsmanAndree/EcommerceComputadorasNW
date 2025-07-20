@@ -130,10 +130,10 @@
                         </a>
                     </div>-->
 
-                     <asp:Panel ID="pnlCompraExitosa" runat="server" Visible="false" CssClass="compra-exitosa-panel">
+                     <!-- <asp:Panel ID="pnlCompraExitosa" runat="server" Visible="false" CssClass="compra-exitosa-panel">
                         <div class="compra-exitosa-icon"><i class="fas fa-check-circle"></i></div>
                         <h2 class="compra-exitosa-title">¡Compra realizada con éxito!</h2>
-                    </asp:Panel>
+                    </asp:Panel>-->
 
                     <!-- Lista de Items del Carrito -->
                    <asp:Repeater ID="rptCarrito" runat="server">
@@ -210,7 +210,7 @@
                         </div>
 
                         <!-- Opciones de Envío -->
-                        <div class="shipping-options">
+                        <!--<div class="shipping-options">
                             <h4>Opción de Envío</h4>
                             <div class="shipping-option">
                                 <input type="radio" id="standard" name="shipping" value="standard" checked>
@@ -242,7 +242,7 @@
                                     <span class="shipping-price">$25.00</span>
                                 </label>
                             </div>
-                        </div>
+                        </div>-->
 
                         <!-- Botón de Pagar -->
                         <asp:Button ID="btnPagar" runat="server" CssClass="checkout-btn" Text="Proceder al Pago" OnClick="btnPagar_Click" />
